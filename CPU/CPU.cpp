@@ -65,10 +65,6 @@ namespace CPU_ilia
 		CPU_theMemory->Write(Register_2, Register_0);
 	}
 
-	void BiP()
-	{
-		std::cout << "\a";
-	}
 	void CPU::Decod(const byte &valou)
 	{
 		if (F_error || F_Halt) { return; }
@@ -77,7 +73,6 @@ namespace CPU_ilia
 		case 1:Add();break;
 		case 2:Div();break;
 		case 3:Mul();break;
-		case 4:BiP();break;
 		}
 	}
 	void CPU::Work()
@@ -91,6 +86,18 @@ namespace CPU_ilia
 		
 	}
    
+	void CPU::setStartAddres( byte &start)
+	{
+		while (start >= 254||start<1) { std::cout << "Выход за перелы памяти!";std::cin >> start; }
+		startAddres = start;
+		programCounter = start;
+	}
+	void CPU::setEndAddres( byte &end)
+	{
+		while (end >= 254||end<1) { std::cout << "Выход за перелы памяти!";std::cin >> end; }
+		endAddres = end;
+
+	}
 
 
 

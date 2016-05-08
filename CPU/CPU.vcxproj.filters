@@ -22,7 +22,7 @@
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
     <ClCompile Include="CPU.cpp">
-      <Filter>Заголовочные файлы</Filter>
+      <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -30,7 +30,7 @@
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="CPU.h">
-      <Filter>Файлы исходного кода</Filter>
+      <Filter>Заголовочные файлы</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

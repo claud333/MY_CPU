@@ -5,8 +5,8 @@ namespace CPU_ilia
 {
 	class CPU
 	{
-	public:
-		const byte startAddres; const byte endAddres;
+	private:
+		 byte startAddres; byte endAddres;
 	private:
 		byte Register_0; byte Register_1; byte Register_2;
 		byte programCounter;
@@ -20,9 +20,10 @@ namespace CPU_ilia
 		void Mul();
 		void Halt();
 		void error();
-		void BiP();
 		void Decod(const byte &valou);
 		void Work();
+		void setStartAddres( byte &start);
+		void setEndAddres( byte &end);
 		
 
 
