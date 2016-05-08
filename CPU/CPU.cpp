@@ -32,10 +32,10 @@ namespace CPU_ilia
 	void CPU::Add()
 	{
 		programCounter++;
-		Register_2 = programCounter;
-		Register_0 = CPU_theMemory->Read(programCounter);
+		Register_2 = CPU_theMemory->Read(programCounter);
+		Register_0 = CPU_theMemory->Read(CPU_theMemory->Read(programCounter));
 		programCounter++;
-		Register_1 = CPU_theMemory->Read(programCounter);
+		Register_1 = CPU_theMemory->Read(CPU_theMemory->Read(programCounter));
 		programCounter++;
 		Register_0 = Register_0 + Register_1;
 		CPU_theMemory->Write(Register_2, Register_0);
@@ -43,8 +43,8 @@ namespace CPU_ilia
 	void CPU::Div()
 	{
 		programCounter++;
-		Register_2 = programCounter;
-		Register_0 = CPU_theMemory->Read(programCounter);
+		Register_2 = CPU_theMemory->Read(programCounter);
+		Register_0 = CPU_theMemory->Read(CPU_theMemory->Read(programCounter));
 		programCounter++;
 		Register_1 = CPU_theMemory->Read(programCounter);
 		if (Register_1 == 0) { error(); Halt();return; }
@@ -56,8 +56,8 @@ namespace CPU_ilia
 	void CPU::Mul()
 	{
 		programCounter++;
-		Register_2 = programCounter;
-		Register_0 = CPU_theMemory->Read(programCounter);
+		Register_2 = CPU_theMemory->Read(programCounter);
+		Register_0 = CPU_theMemory->Read(CPU_theMemory->Read(programCounter));
 		programCounter++;
 		Register_1 = CPU_theMemory->Read(programCounter);
 		programCounter++;
@@ -88,13 +88,13 @@ namespace CPU_ilia
    
 	void CPU::setStartAddres( byte &start)
 	{
-		while (start >= 254||start<1) { std::cout << "Выход за перелы памяти!";std::cin >> start; }
+		while (start >= 254||start<0) { std::cout << "Выход за перелы памяти!";std::cin >> start; }
 		startAddres = start;
 		programCounter = start;
 	}
 	void CPU::setEndAddres( byte &end)
 	{
-		while (end >= 254||end<1) { std::cout << "Выход за перелы памяти!";std::cin >> end; }
+		while (end >= 254||end<0) { std::cout << "Выход за перелы памяти!";std::cin >> end; }
 		endAddres = end;
 
 	}

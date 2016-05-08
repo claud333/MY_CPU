@@ -20,7 +20,7 @@ void byNumber(Memory* theMemory)
 void turn(Memory* theMemory)
 {
 	int valou;
-	for (int i = 0;i < theMemory->maxAddres;++i)
+	for (int i = 1;i < theMemory->maxAddres;i++)
 	{
 		cout << "Addres[" << i << "] = ";
 		cin >> valou;
@@ -63,14 +63,7 @@ int main()
 	CPU* theCPU = new CPU(theMemory);
 	cout << "Готово" << endl;
 
-	cout << "В каком участки памяти находится командный код?" << endl
-		<< "Начинается в: ";
-	byte startEnd;
-	cin >> startEnd;
-	theCPU->setStartAddres(startEnd);
-	cout << "Заканчивается в: ";
-	cin >> startEnd;
-	theCPU->setEndAddres(startEnd);
+	
 
 
 
