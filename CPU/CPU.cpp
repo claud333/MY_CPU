@@ -1,4 +1,5 @@
 #include "CPU.h"
+#include <iostream>
 namespace CPU_ilia
 {
 	CPU::CPU(Memory* takeMemory)
@@ -27,6 +28,69 @@ namespace CPU_ilia
 	{
 		F_error = true;
 	}
+
+	void CPU::Add()
+	{
+		programCounter++;
+		Register_2 = programCounter;
+		Register_0 = CPU_theMemory->Read(programCounter);
+		programCounter++;
+		Register_1 = CPU_theMemory->Read(programCounter);
+		programCounter++;
+		Register_0 = Register_0 + Register_1;
+		CPU_theMemory->Write(Register_2, Register_0);
+   }
+	void CPU::Div()
+	{
+		programCounter++;
+		Register_2 = programCounter;
+		Register_0 = CPU_theMemory->Read(programCounter);
+		programCounter++;
+		Register_1 = CPU_theMemory->Read(programCounter);
+		if (Register_1 == 0) { error(); Halt();return; }
+		programCounter++;
+		Register_0 = Register_0 / Register_1;
+		CPU_theMemory->Write(Register_2, Register_0);
+	}
+
+	void CPU::Mul()
+	{
+		programCounter++;
+		Register_2 = programCounter;
+		Register_0 = CPU_theMemory->Read(programCounter);
+		programCounter++;
+		Register_1 = CPU_theMemory->Read(programCounter);
+		programCounter++;
+		Register_0 = Register_0 * Register_1;
+		CPU_theMemory->Write(Register_2, Register_0);
+	}
+
+	void BiP()
+	{
+		std::cout << "\a";
+	}
+	void CPU::Decod(const byte &valou)
+	{
+		if (F_error || F_Halt) { return; }
+		switch (valou)
+		{
+		case 1:Add();break;
+		case 2:Div();break;
+		case 3:Mul();break;
+		case 4:BiP();break;
+		}
+	}
+	void CPU::Work()
+	{
+		while (!F_Halt)
+		{
+			Decod(CPU_theMemory->Read(programCounter));
+			programCounter++;
+			if (programCounter >= endAddres) { Halt(); }
+		}
+		
+	}
+   
 
 
 
